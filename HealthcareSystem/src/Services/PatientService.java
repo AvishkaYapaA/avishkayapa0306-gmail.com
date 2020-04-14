@@ -18,7 +18,7 @@ import org.jsoup.nodes.Document;
 @Path("/Patient")
 public class PatientService {
 	
-//Item itemObj = new Item();
+
 	Patient patientObj = new Patient();
 	
 	
@@ -35,6 +35,15 @@ public class PatientService {
 		return output;
 	}
 	
+	
+	
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readPatients(){
+		
+		return patientObj.readPatients();
+	}
 	
 	
 }
