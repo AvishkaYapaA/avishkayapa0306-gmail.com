@@ -6,8 +6,7 @@ import DbConnect.DbConnect;
 
 public class Patient {
 
-	//comment 01
-	//comment
+	
 	//insert-------------------------------------------------------------------------------------------------------------------------
 		public String insertPatient(String username,String address,String nic,String dob,String gender,String mobile_number,String email,String password)
 	    {
@@ -63,31 +62,47 @@ public class Patient {
 					con = db.connect();
 				
 				if (con == null){
-					return "Error while connecting to the database for reading."; 
+					return "Error while connecting to the database for reading patients."; 
 				}
 				// Prepare the html table to be displayed
-				output = "<table border=\"1\"><tr><th>Item Code</th><th>Item Name</th><th>ItemPrice</th><th>ItemDescription</th><th>Update</th><th>Remove</th></tr>";
+				output = "<table border=\"1\"><tr>"
+						+ "<th>UserName</th>"
+						+ "<th>Address</th>"
+						+ "<th>NIC</th>"
+						+ "<th>Birth Date</th>"
+						+ "<th>Gender</th>"
+						+ "<th>Mobile No</th>"
+						+ "<th>Email</th>"
+						+ "<th>Update</th>"
+						+ "<th>Remove</th>"
+						+ "</tr>";
 				
-				String query = "select * from items";
+				String query = "select * from patient";
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				// iterate through the rows in the result set
 				while (rs.next()){
 					
-					String itemID = Integer.toString(rs.getInt("itemID"));
-					String itemCode = rs.getString("itemCode");
-					String itemName = rs.getString("itemName");
-					String itemPrice = Double.toString(rs.getDouble("itemPrice"));
-					String itemDesc = rs.getString("itemDesc");
+					String userID = Integer.toString(rs.getInt("userID"));
+					String userName = rs.getString("userName");
+					String userAddress = rs.getString("userAddress");
+					String nicNo = rs.getString("nicNo");
+					String dateOfBirth = rs.getString("dateOfBirth");
+					String gender = rs.getString("gender");
+					String mobileNumber = rs.getString("mobileNumber");
+					String email = rs.getString("email");
 					// Add into the html table
-					output += "<tr><td>" + itemCode + "</td>";
-					output += "<td>" + itemName + "</td>";
-					output += "<td>" + itemPrice + "</td>";
-					output += "<td>" + itemDesc + "</td>";
+					output += "<tr><td>" + userName + "</td>";
+					output += "<td>" + userAddress + "</td>";
+					output += "<td>" + nicNo + "</td>";
+					output += "<td>" + dateOfBirth + "</td>";
+					output += "<td>" + gender + "</td>";
+					output += "<td>" + mobileNumber + "</td>";
+					output += "<td>" + email + "</td>";
 					// buttons
 					output += "<td><input name=\"btnUpdate\" type=\"button\"value=\"Update\" class=\"btn btn-secondary\"></td>" 
-					+ "<td><form method=\"post\" action=\"items.jsp\">" + "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"class=\"btn btn-danger\">"
-					+ "<input name=\"itemID\" type=\"hidden\" value=\"" + itemID
+					+ "<td><form method=\"post\" action=\"patients.jsp\">" + "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"class=\"btn btn-danger\">"
+					+ "<input name=\"userID\" type=\"hidden\" value=\"" + userID
 					+ "\">" + "</form></td></tr>";
 				}
 				con.close();
@@ -95,7 +110,7 @@ public class Patient {
 				output += "</table>";
 				}
 				catch (Exception e){
-					output = "Error while reading the items.";
+					output = "Error while reading the patients info.";
 					System.err.println(e.getMessage());
 				}
 				
