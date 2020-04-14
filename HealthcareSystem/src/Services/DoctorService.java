@@ -24,7 +24,7 @@ public class DoctorService {
 		return doctor.readDoctors();
 	}
 	
-	
+	//Avishka
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
