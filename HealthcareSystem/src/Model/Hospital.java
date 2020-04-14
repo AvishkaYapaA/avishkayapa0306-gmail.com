@@ -131,4 +131,48 @@ public class Hospital {
 				return output;
 			}
 			
+			
+	//update hospitals-------------------------------------------------------------------------------------------------------------------------
+					
+			public String updateHospital(String HospitalID, String MOHCode,String Managername,String Hospitalname,String address,String TPNumber,String location,String username,String password)
+			{
+			
+				
+				String output = "";
+				
+				try {
+					DbConnect db = new DbConnect();
+					Connection con = null;
+					con = db.connect();
+					
+					if (con == null) {
+						return "Error while connecting to the database for updating.";
+					}
+					
+					// create a prepared statement
+						String query = "UPDATE hospital SET MOHcode = ?,ManagerName = ?,HospitalName = ?,Address = ?,TPnumber = ?,Location = ?,Username = ?,Password = ? WHERE HospitalID=?";
+					PreparedStatement preparedStmt = con.prepareStatement(query);
+					// binding values
+					preparedStmt.setString(1, MOHCode);
+					preparedStmt.setString(2, Managername);
+					preparedStmt.setString(3, Hospitalname);
+					preparedStmt.setString(4, address);
+					preparedStmt.setString(5, TPNumber);
+					preparedStmt.setString(6, location);
+					preparedStmt.setString(7, username);
+					preparedStmt.setString(8, password);
+					preparedStmt.setString(9, HospitalID);
+					
+					
+					// execute the statement
+					preparedStmt.execute();
+					con.close();
+					output = "Updated successfully";
+				} catch (Exception e) {
+					output = "Error while updating the item.";
+					System.err.println(e.getMessage());
+				}
+				return output;
+			}
+			
 }
