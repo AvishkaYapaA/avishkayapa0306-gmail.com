@@ -72,4 +72,21 @@ public class PatientService {
 	}
 	
 	
+	
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deletePatient(String patientData)
+	{
+	//Convert the input string to an XML document
+	 Document doc = Jsoup.parse(patientData, "", Parser.xmlParser());
+
+	//Read the value from the element <itemID>
+	 String userid = doc.select("userID").text();
+	 String output = patientObj.deletePatient(userid);
+	 
+	 return output;
+	}
+	
 }
