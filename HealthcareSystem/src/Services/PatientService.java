@@ -46,4 +46,30 @@ public class PatientService {
 	}
 	
 	
+	
+	@PUT
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updatePatient(String patientData)
+	{
+	//Convert the input string to a JSON object
+	 JsonObject patientObject = new JsonParser().parse(patientData).getAsJsonObject();
+	//Read the values from the JSON object
+	 
+	 String userid = patientObject.get("userID").getAsString();
+	 String username = patientObject.get("userName").getAsString();
+	 String address = patientObject.get("userAddress").getAsString();
+	 String nic = patientObject.get("nicNo").getAsString();
+	 String dob = patientObject.get("dateOfBirth").getAsString();
+	 String gender = patientObject.get("gender").getAsString();
+	 String mobile_number = patientObject.get("mobileNumber").getAsString();
+	 String email = patientObject.get("email").getAsString();
+	 String password = patientObject.get("password").getAsString();
+	 
+	 String output = patientObj.updatePatient(userid, username, address, nic, dob, gender, mobile_number, email, password);
+	 return output;
+	}
+	
+	
 }
