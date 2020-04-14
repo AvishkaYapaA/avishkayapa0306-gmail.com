@@ -6,7 +6,7 @@ import DbConnect.DbConnect;
 
 public class Patient {
 
-	
+	//comment 01
 	//comment
 	//insert-------------------------------------------------------------------------------------------------------------------------
 		public String insertPatient(String username,String address,String nic,String dob,String gender,String mobile_number,String email,String password)
