@@ -99,7 +99,6 @@ public class Hospital {
 						String Address = rs.getString("Address");
 						String TPnumber = rs.getString("TPnumber");
 						String Location = rs.getString("Location");
-						
 
 						
 						// Add into the html table
@@ -109,7 +108,6 @@ public class Hospital {
 						output += "<td>" + Address + "</td>";
 						output += "<td>" + TPnumber + "</td>";
 						output += "<td>" + Location + "</td>";
-						
 
 						
 						// buttons
