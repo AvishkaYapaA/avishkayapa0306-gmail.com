@@ -207,7 +207,7 @@ public class Hospital {
 					output = "Deleted Hospital successfully";
 					
 				} catch (Exception e) {
-					System.out.println("Deleted Hospital Unsuccessfully");
+					System.out.println("Deleted Hospital Data Unsuccessfully");
 					output = "Error while deleting the Hospital.";
 					System.err.println(e.getMessage());
 				}
