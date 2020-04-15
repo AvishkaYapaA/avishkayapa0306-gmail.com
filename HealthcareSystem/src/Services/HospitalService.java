@@ -23,15 +23,16 @@ public class HospitalService {
 	
 	Hospital hospitalObj = new Hospital();
 	
+	//Read method-----------------------------------------------------------------------------------------
 	
-	@GET
-	@Path("/")
-	@Produces(MediaType.TEXT_HTML)
-	public String readHospital() {
+		@GET
+		@Path("/")
+		@Produces(MediaType.TEXT_HTML)
+		public String readHospital() {
 		return hospitalObj.readHospital();
-	}
+		}
 		
-		
+	//Insert method-----------------------------------------------------------------------------------------
 		@POST
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -45,7 +46,7 @@ public class HospitalService {
 			return output;
 		}
 		
-		
+	//Update method-----------------------------------------------------------------------------------------
 		@PUT
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
@@ -71,6 +72,8 @@ public class HospitalService {
 			return output;
 		}
 		
+		
+	//Delete method-----------------------------------------------------------------------------------------
 		@DELETE
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_XML)
