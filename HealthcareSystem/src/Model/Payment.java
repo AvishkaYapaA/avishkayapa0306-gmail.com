@@ -53,8 +53,14 @@ public class Payment {
 
 			// Prepare the html table to be displayed
 
-			output = "<table border=\"1\">" + "<tr>" + "<th>Card No</th>" + "<th>Name On Card</th>"
-					+ "<th>Expiry Date</th>" + "<th>CVC No</th>" + "<th>Update</th>" + "<th>Remove</th></tr>";
+			output = "<table border=\"1\">" 
+					+ "<tr>" 
+					+ "<th>Card No</th>" 
+					+ "<th>Name On Card</th>"
+					+ "<th>Expiry Date</th>" 
+					+ "<th>CVC No</th>" 
+					+ "<th>Update</th>" 
+					+ "<th>Remove</th></tr>";
 
 			String query = "select * from payment";
 			Statement stmt = con.createStatement();
@@ -62,23 +68,25 @@ public class Payment {
 			// iterate through the rows in the result set
 			while (rs.next()) {
 
-				String pamentID = rs.getString("pamentID");
-				String cardNo = Integer.toString(rs.getInt("cardNo"));
-				String nameOnCard = rs.getString("nameOnCard");
-				String expDate = rs.getString("expDate");
-				String cvc = Integer.toString(rs.getInt("cvc"));
+				String pamentid = Integer.toString(rs.getInt("pamentID"));
+				String cardno = Integer.toString(rs.getInt("cardNo"));
+				String nameoncard = rs.getString("nameOnCard");
+				String expdate = rs.getString("expDate");
+				String cvcno = Integer.toString(rs.getInt("cvc"));
 
 				// Add into the html table
-				output += "<tr>" + "<td>" + cardNo + "</td>";
-				output += "<td>" + nameOnCard + "</td>";
-				output += "<td>" + expDate + "</td>";
-				output += "<td>" + cvc + "</td>";
+				output += "<tr>" 
+						+ "<td>" + cardno + "</td>";
+				output += "<td>" + nameoncard + "</td>";
+				output += "<td>" + expdate + "</td>";
+				output += "<td>" + cvcno + "</td>";
 
 				// buttons
 				output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btn btn-secondary\"></td>"
 						+ "<td><form method=\"post\" action=\"items.jsp\">"
 						+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
-						+ "<input name=\"pamentID\" type=\"hidden\" value=\"" + pamentID + "\">" + "</form></td></tr>";
+						+ "<input name=\"pamentid\" type=\"hidden\" value=\"" + pamentid + "\">" 
+						+ "</form></td></tr>";
 			}
 
 			con.close();
@@ -120,5 +128,6 @@ public class Payment {
 		}
 		return output;
 	}
+
 
 }

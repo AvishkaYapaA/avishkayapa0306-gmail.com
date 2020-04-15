@@ -30,7 +30,8 @@ public class PaymentService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertPayment(@FormParam("cardNo") int cardNo, @FormParam("nameOnCard") String nameOnCard,
-			@FormParam("expDate") String expDate, @FormParam("cvc") int cvc) {
+			@FormParam("expDate") String expDate, @FormParam("cvc") int cvc) 
+	{
 		String output = payment.insertPayment(cardNo, nameOnCard, expDate, cvc);
 		return output;
 	}
@@ -50,5 +51,5 @@ public class PaymentService {
 		String output = payment.deletePayment(pamentID);
 		return output;
 	}
-
+	
 }
