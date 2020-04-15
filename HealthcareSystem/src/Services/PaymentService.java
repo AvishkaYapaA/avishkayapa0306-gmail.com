@@ -35,4 +35,20 @@ public class PaymentService {
 		return output;
 	}
 
+
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteItem(String paymentData) {
+		// Convert the input string to an XML document
+		Document document = Jsoup.parse(paymentData, "", Parser.xmlParser());
+
+		// Read the value from the element <itemID>
+		String pamentID = document.select("pamentID").text();
+
+		String output = payment.deletePayment(pamentID);
+		return output;
+	}
+
 }

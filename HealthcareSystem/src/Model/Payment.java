@@ -5,7 +5,7 @@ import java.sql.*;
 import DbConnect.DbConnect;;
 
 public class Payment {
-	
+
 	public String insertPayment(int cardNo, String nameOnCard, String expDate, int cvc) {
 		String output = "";
 		try {
@@ -39,7 +39,7 @@ public class Payment {
 		}
 		return output;
 	}
-	
+
 	public String readPayment() {
 		String output = "";
 		try {
@@ -86,6 +86,36 @@ public class Payment {
 			output += "</table>";
 		} catch (Exception e) {
 			output = "Error while reading the payment.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
+
+	public String deletePayment(String pamentID) {
+		String output = "";
+		try {
+			DbConnect db = new DbConnect();
+			Connection con = null;
+			con = db.connect();
+			if (con == null) {
+
+				return "Error while connecting to the database for deleting.";
+			}
+			
+			// create a prepared statement
+			String query = "delete from payment where pamentID=?";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			
+			// binding values
+			preparedStmt.setInt(1, Integer.parseInt(pamentID));
+			
+			// execute the statement
+			preparedStmt.execute();
+			con.close();
+			output = "Deleted Payment successfully";
+			
+		} catch (Exception e) {
+			output = "Error while deleting the payment.";
 			System.err.println(e.getMessage());
 		}
 		return output;
