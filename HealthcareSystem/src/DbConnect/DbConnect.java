@@ -9,7 +9,7 @@ public class DbConnect {
 	{
 		Class.forName("com.mysql.jdbc.Driver");
 		
-		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb", "root", "");
+		Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb?serverTimezone=UTC", "root", "");
 		
 		return con;	
 	}
