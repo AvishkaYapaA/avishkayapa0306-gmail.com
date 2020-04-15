@@ -24,6 +24,8 @@ public class HospitalService {
 	
 	Hospital hospitalObj = new Hospital();
 	
+	
+	//HATP
 	//Read method-----------------------------------------------------------------------------------------
 	
 		@GET
