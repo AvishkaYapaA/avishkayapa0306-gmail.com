@@ -7,7 +7,7 @@ import DbConnect.DbConnect;
 public class Patient {
 
 	
-	//insert-------------------------------------------------------------------------------------------------------------------------
+		//insert-------------------------------------------------------------------------------------------------------------------------
 		public String insertPatient(String username,String address,String nic,String dob,String gender,String mobile_number,String email,String password)
 	    {
 				String output = "";
@@ -65,7 +65,8 @@ public class Patient {
 					return "Error while connecting to the database for reading patients."; 
 				}
 				// Prepare the html table to be displayed
-				output = "<table border=\"1\"><tr>"
+				output = "<table border=\"2\"><tr>"
+						+ "<th>UserID</th>"
 						+ "<th>UserName</th>"
 						+ "<th>Address</th>"
 						+ "<th>NIC</th>"
@@ -92,7 +93,8 @@ public class Patient {
 					String mobileNumber = rs.getString("mobileNumber");
 					String email = rs.getString("email");
 					// Add into the html table
-					output += "<tr><td>" + userName + "</td>";
+					output += "<tr><td>" + userID + "</td>";
+					output += "<td>" + userName + "</td>";
 					output += "<td>" + userAddress + "</td>";
 					output += "<td>" + nicNo + "</td>";
 					output += "<td>" + dateOfBirth + "</td>";
