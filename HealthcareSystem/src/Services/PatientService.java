@@ -72,7 +72,7 @@ public class PatientService {
 	}
 	
 	
-	//delete
+	//delete-----
 	@DELETE
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
