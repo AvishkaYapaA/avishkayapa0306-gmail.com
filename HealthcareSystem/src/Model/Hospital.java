@@ -29,6 +29,7 @@ public class Hospital {
 								+"(`HospitalID`,`MOHcode`,`ManagerName`,`HospitalName`,`Address`,`TPnumber`,`Location`,`Username`,`Password`)"
 								 + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 								PreparedStatement preparedStmt = con.prepareStatement(query); 
+								
 						// binding values
 						preparedStmt.setInt(1, 0);
 						preparedStmt.setString(2, MOHCode);
@@ -47,6 +48,7 @@ public class Hospital {
 					}
 						catch (Exception e)
 					{
+							System.out.println("Indert Hospital Data Unsuccessfully");
 							System.out.println("erro insert hospital");
 							output = "Error while inserting the new hospital!";
 							System.err.println(e.getMessage());
@@ -98,8 +100,7 @@ public class Hospital {
 						String TPnumber = rs.getString("TPnumber");
 						String Location = rs.getString("Location");
 						
-//						String Username = rs.getString("Username");
-//						String Password = rs.getString("Password");
+
 						
 						// Add into the html table
 						output += "<tr><td>" + MOHcode + "</td>";
@@ -109,8 +110,7 @@ public class Hospital {
 						output += "<td>" + TPnumber + "</td>";
 						output += "<td>" + Location + "</td>";
 						
-//						output += "<td>" + Username + "</td>";
-//						output += "<td>" + Password + "</td>";
+
 						
 						// buttons
 							output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btn btn-secondary\"></td>"
@@ -118,13 +118,16 @@ public class Hospital {
 							+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
 							+ "<input name=\"itemID\" type=\"hidden\" value=\"" + HospitalID
 							+ "\">" + "</form></td></tr>";
+							
 					}
 					con.close();
+					
 					// Complete the html table
 					output += "</table>";
 				}
 				catch (Exception e)
 				{
+					System.out.println("Read  Hospital Data Unsuccessfully");
 					output = "Error while reading the Hospital.";
 					System.err.println(e.getMessage());
 				}
@@ -168,7 +171,9 @@ public class Hospital {
 					preparedStmt.execute();
 					con.close();
 					output = "Updated successfully";
+					
 				} catch (Exception e) {
+					System.out.println("Update Hospital Data Unsuccessfully");
 					output = "Error while updating the item.";
 					System.err.println(e.getMessage());
 				}
@@ -188,16 +193,21 @@ public class Hospital {
 
 						return "Error while connecting to the database for deleting.";
 					}
+					
 					// create a prepared statement
 					String query = "delete from hospital where HospitalID=?";
 					PreparedStatement preparedStmt = con.prepareStatement(query);
+					
 					// binding values
 					preparedStmt.setInt(1, Integer.parseInt(HospitalID));
+					
 					// execute the statement
 					preparedStmt.execute();
 					con.close();
 					output = "Deleted Hospital successfully";
+					
 				} catch (Exception e) {
+					System.out.println("Deleted Hospital Unsuccessfully");
 					output = "Error while deleting the Hospital.";
 					System.err.println(e.getMessage());
 				}
