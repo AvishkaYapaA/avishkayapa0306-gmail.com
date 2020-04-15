@@ -21,7 +21,7 @@ public class PatientService {
 
 	Patient patientObj = new Patient();
 	
-	
+	//insert
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -36,7 +36,7 @@ public class PatientService {
 	}
 	
 	
-	
+	//view
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
@@ -46,7 +46,7 @@ public class PatientService {
 	}
 	
 	
-	
+	//update
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -72,7 +72,7 @@ public class PatientService {
 	}
 	
 	
-	
+	//delete
 	@DELETE
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
