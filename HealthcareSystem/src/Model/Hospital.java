@@ -98,8 +98,6 @@ public class Hospital {
 						String TPnumber = rs.getString("TPnumber");
 						String Location = rs.getString("Location");
 						
-//						String Username = rs.getString("Username");
-//						String Password = rs.getString("Password");
 						
 						// Add into the html table
 						output += "<tr><td>" + MOHcode + "</td>";
@@ -108,9 +106,7 @@ public class Hospital {
 						output += "<td>" + Address + "</td>";
 						output += "<td>" + TPnumber + "</td>";
 						output += "<td>" + Location + "</td>";
-						
-//						output += "<td>" + Username + "</td>";
-//						output += "<td>" + Password + "</td>";
+
 						
 						// buttons
 							output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btn btn-secondary\"></td>"
