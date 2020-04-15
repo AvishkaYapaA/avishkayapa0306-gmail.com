@@ -129,5 +129,37 @@ public class Payment {
 		return output;
 	}
 
+	public String updatePayment(String pamentID, int cardNo, String nameOnCard, String expDate, int cvc) {
+		
+		String output = "";
 
+		try {
+			DbConnect db = new DbConnect();
+			Connection con = null;
+			con = db.connect();
+
+			if (con == null) {
+				return "Error while connecting to the database for updating.";
+			}
+
+			// create a prepared statement
+			String query = "UPDATE payment SET cardNo = ?, nameOnCard = ?, expDate = ?, cvc = ? WHERE pamentID=?";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			// binding values
+			preparedStmt.setInt(1, cardNo);
+			preparedStmt.setString(2, nameOnCard);
+			preparedStmt.setString(3, expDate);
+			preparedStmt.setInt(4, cvc);
+			preparedStmt.setInt(5, Integer.parseInt(pamentID));
+
+			// execute the statement
+			preparedStmt.execute();
+			con.close();
+			output = "Updated successfully";
+		} catch (Exception e) {
+			output = "Error while updating the item.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
 }

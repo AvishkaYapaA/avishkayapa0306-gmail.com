@@ -30,12 +30,10 @@ public class PaymentService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertPayment(@FormParam("cardNo") int cardNo, @FormParam("nameOnCard") String nameOnCard,
-			@FormParam("expDate") String expDate, @FormParam("cvc") int cvc) 
-	{
+			@FormParam("expDate") String expDate, @FormParam("cvc") int cvc) {
 		String output = payment.insertPayment(cardNo, nameOnCard, expDate, cvc);
 		return output;
 	}
-
 
 	@DELETE
 	@Path("/")
@@ -51,5 +49,24 @@ public class PaymentService {
 		String output = payment.deletePayment(pamentID);
 		return output;
 	}
-	
+
+	@PUT
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updatePayment(String paymentData) {
+		// Convert the input string to a JSON object
+		JsonObject obj = new JsonParser().parse(paymentData).getAsJsonObject();
+
+		// Read the values from the JSON object
+		String pamentID = obj.get("pamentID").getAsString();
+		int cardNo = obj.get("cardNo").getAsInt();
+		String nameOnCard = obj.get("nameOnCard").getAsString();
+		String expDate = obj.get("expDate").getAsString();
+		int cvc = obj.get("cvc").getAsInt();
+
+		String output = payment.updatePayment(pamentID, cardNo, nameOnCard, expDate, cvc);
+		return output;
+	}
+
 }
