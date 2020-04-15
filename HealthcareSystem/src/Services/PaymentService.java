@@ -25,4 +25,14 @@ public class PaymentService {
 		return payment.readPayment();
 	}
 
+	@POST
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String insertPayment(@FormParam("cardNo") int cardNo, @FormParam("nameOnCard") String nameOnCard,
+			@FormParam("expDate") String expDate, @FormParam("cvc") int cvc) {
+		String output = payment.insertPayment(cardNo, nameOnCard, expDate, cvc);
+		return output;
+	}
+
 }

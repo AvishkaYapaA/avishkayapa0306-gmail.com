@@ -6,8 +6,40 @@ import DbConnect.DbConnect;;
 
 public class Payment {
 	
-	//testpayment branch
+	public String insertPayment(int cardNo, String nameOnCard, String expDate, int cvc) {
+		String output = "";
+		try {
 
+			DbConnect db = new DbConnect();
+			Connection con = null;
+			con = db.connect();
+
+			if (con == null) {
+				return "Error while connecting to the database for inserting.";
+			}
+			// create a prepared statement
+			String query = "insert into payment" + "(`pamentID`,`cardNo`,`nameOnCard`,`expDate`,`cvc`)"
+					+ " values (?, ?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			// binding values
+			preparedStmt.setInt(1, 0);
+			preparedStmt.setInt(2, cardNo);
+			preparedStmt.setString(3, nameOnCard);
+			preparedStmt.setString(4, expDate);
+			preparedStmt.setInt(5, cvc);
+
+			// execute the statement
+			preparedStmt.execute();
+			con.close();
+			output = "Inserted Payment successfully";
+		} catch (Exception e) {
+			output = "Error while inserting Payment Info";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
+	
 	public String readPayment() {
 		String output = "";
 		try {
